@@ -22,10 +22,15 @@ It allows users to browse, search, and purchase books, manage their cart, place 
 BookView/
 
 ├── frontend/   # React frontend (User Interface)
+
 ├── backend/    # Node.js + Express backend
+
 ├── .gitignore
+
 ├── README.md
+
 └── package.json
+
 
 ---
 
@@ -42,7 +47,7 @@ BookView/
 ### 🔧 Clone the Repository
 
 ```bash
-git clone https://github.com/riyatyag/BookView.git
+git clone https://github.com/riyatyag949/BookView.git
 cd BookView
 ```
 
