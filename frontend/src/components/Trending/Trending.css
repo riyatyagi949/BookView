@@ -1,0 +1,197 @@
+/* Main section layout */
+.trending-section {
+  position: relative;
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  width: 100%;
+}
+
+/* Background image behind the overlay */
+.trending-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../../Assets/Trending_background1.webp') no-repeat center/cover;
+  filter: brightness(0.4);
+  z-index: 0;
+  border-radius: 16px;
+}
+
+/* Overlay to darken background and display content */
+.trending-overlay {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  box-shadow: 0 0 40px rgba(211, 84, 0, 0.6);
+}
+
+/* Section heading */
+.trending-heading {
+  font-size: 3.5rem;
+  color: #F4D03F;
+  font-family: 'Georgia', serif;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  letter-spacing: 2px;
+}
+
+/* Grid layout — 5 cards per row on desktop */
+.trending-books-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 2.5rem;
+}
+
+/* Individual card styling */
+.trending-book-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(243, 156, 18, 0.3);
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trending-book-card::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 160px;
+  background: rgba(243, 156, 18, 0.15);
+  border-radius: 50% / 70%;
+  filter: blur(28px);
+  z-index: -1;
+  box-shadow: 0 0 40px rgba(243, 156, 18, 0.3);
+}
+
+.trending-book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(243, 156, 18, 0.5);
+}
+
+/* Book image styling */
+.trending-book-image {
+  width: 100%;
+  height: 240px; 
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(211, 84, 0, 0.5);
+}
+
+/* Book info */
+.trending-book-info h3 {
+  font-size: 1.3rem;
+  color: #d35400;
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+}
+
+.author {
+  font-style: italic;
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 0.3rem;
+}
+
+.price {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #d35400;
+  margin-top: 0.5rem;
+}
+
+/* Responsive Adjustments */
+
+/* Medium screens: tablets & small laptops (3 cards/row) */
+@media (max-width: 1024px) {
+  .trending-heading {
+    font-size: 2.8rem;
+  }
+  .trending-books-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .trending-book-image {
+    height: 200px;
+  }
+}
+
+/* Tablets and larger mobiles (2 cards/row) */
+@media (max-width: 768px) {
+  .trending-section {
+    padding: 2.5rem 1rem;
+  }
+  .trending-heading {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+  .trending-books-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .trending-book-image {
+    height: 180px;
+  }
+  .trending-book-info h3 {
+    font-size: 1.1rem;
+  }
+  .author {
+    font-size: 0.9rem;
+  }
+  .price {
+    font-size: 0.95rem;
+  }
+}
+/* Phones (1 card/row) */
+@media (max-width: 480px) {
+  .trending-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .trending-books-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .trending-book-card {
+    padding: 0.7rem;
+    border-radius: 12px;
+  }
+
+  .trending-book-image {
+    width: 100%;
+    max-height: 200px;
+    height: auto;
+    object-fit: contain; 
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .trending-book-info h3 {
+    font-size: 1rem;
+  }
+
+  .author {
+    font-size: 0.85rem;
+  }
+
+  .price {
+    font-size: 0.9rem;
+  }
+}
+/* Prevent unwanted horizontal scrolling */
+body, html {
+  overflow-x: hidden;
+}

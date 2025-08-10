@@ -1,0 +1,212 @@
+.editors-pick {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  color: #fff;
+  position: relative;
+  background: url('../../Assets/EditorsPick_background.webp') no-repeat center center/cover;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(211, 84, 0, 0.6);
+}
+
+.editors-pick .section-title {
+  font-size: 4rem;
+  color: #D35400; 
+  font-family: 'Georgia', serif;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  text-shadow: 2px 2px 8px rgba(211, 84, 0, 0.5);
+  letter-spacing: 3px;
+}
+
+.editors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.editor-card {
+  background: rgba(40, 40, 40, 0.85);
+  padding: 1.2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(211, 84, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.editor-card::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 180px;
+  background: rgba(243, 156, 18, 0.15); 
+  border-radius: 50% / 70%;
+  filter: blur(28px);
+  z-index: -1;
+  box-shadow: 0 0 40px rgba(243, 156, 18, 0.3);
+}
+
+.editor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(211, 84, 0, 0.7);
+}
+
+.editor-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(211, 84, 0, 0.5);
+}
+
+.editor-card h4 {
+  color: #D35400;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.editor-author {
+  font-style: italic;
+  font-size: 1rem;
+  color: #e0b273;
+  margin-bottom: 0.5rem;
+}
+
+.editor-reason {
+  font-size: 1rem;
+  color: #f5deb3;
+  margin-bottom: 0.5rem;
+}
+
+.editor-price {
+  font-size: 1.1rem;
+  color: #F39C12; 
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.book-rating {
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.star {
+  margin-right: 2px;
+  font-size: 1.3rem;
+  color: #ffd700;
+}
+
+.star.empty {
+  color: #555;
+}
+
+/* Responsive Adjustments */
+
+/* Large tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .editors-pick {
+    padding: 3rem 1rem;
+  }
+  .editors-pick .section-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+  .editors-grid {
+    gap: 2rem;
+  }
+  .editor-card {
+    padding: 1rem;
+  }
+  .editor-card img {
+    height: 220px;
+  }
+  .editor-card h4 {
+    font-size: 1.25rem;
+  }
+  .editor-author,
+  .editor-reason,
+  .editor-price {
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablets and larger mobiles */
+@media (max-width: 768px) {
+  .editors-pick {
+    padding: 2.5rem 1rem;
+  }
+  .editors-pick .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: 2px;
+  }
+  .editors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+  .editor-card {
+    padding: 0.9rem;
+  }
+  .editor-card img {
+    height: 180px;
+  }
+  .editor-card h4 {
+    font-size: 1.1rem;
+  }
+  .editor-author,
+  .editor-reason,
+  .editor-price {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .editors-pick {
+    padding: 2rem 0.5rem;
+    margin: 2rem auto;
+    border-radius: 12px;
+  }
+  .editors-pick .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1.5px;
+  }
+  .editors-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .editor-card {
+    padding: 0.7rem;
+    border-radius: 12px;
+    height: auto; 
+  }
+  .editor-card img {
+    width: 100%;       
+    height: auto;     
+    object-fit: contain; 
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 24px rgba(211, 84, 0, 0.5);
+    display: block; 
+    max-width: 100%;
+  }
+  .editor-card h4 {
+    font-size: 1rem;
+  }
+  .editor-author,
+  .editor-reason,
+  .editor-price {
+    font-size: 0.85rem;
+  }
+}

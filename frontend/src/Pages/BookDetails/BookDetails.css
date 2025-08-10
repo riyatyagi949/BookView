@@ -1,0 +1,311 @@
+.details-container {
+  padding: 30px 20px;
+  background: #f0f4f8;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.5s ease-in;
+  color: #222;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.loading-text {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #490fe8;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+.back-button:hover,
+.back-button:focus {
+  color: #004aad;
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Details Section */
+.details-content {
+  display: flex;
+  gap: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 25px 30px;
+  align-items: center;
+  animation: slideIn 0.5s ease-out;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.details-image {
+  width: 280px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.details-image:hover,
+.details-image:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
+.details-info {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 300px;
+}
+
+.details-info h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.details-author {
+  font-size: 1.1rem;
+  color: #6a1b9a;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.details-price {
+  font-size: 1.2rem;
+  color: #d84315;
+  font-weight: 600;
+}
+
+.details-rating {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  /* no color here, stars handle it */
+}
+
+.details-description {
+  font-size: 1rem;
+  color: #37474f;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  white-space: pre-line;
+}
+
+.add-to-cart-button {
+  padding: 14px 30px;
+  background-color: #43a047;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(67, 160, 71, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.add-to-cart-button:hover:not(:disabled),
+.add-to-cart-button:focus:not(:disabled) {
+  background-color: #388e3c;
+  transform: scale(1.05);
+  outline: none;
+}
+
+.add-to-cart-button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Stars */
+.star {
+  font-size: 1.2rem;
+  margin-right: 2px;
+  color: gold; 
+}
+
+.star.empty {
+  color: #ccc; 
+}
+
+/* Reviews Section */
+.book-reviews {
+  margin-top: 40px;
+  max-width: 100%;
+}
+
+.book-reviews h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #00bfa6; 
+  text-shadow:
+    0 0 5px #f5e37f,
+    0 0 10px #fefe9a,
+    0 0 20px #ebe372;
+  letter-spacing: 1.2px;
+  font-family: 'Segoe UI Black', 'Arial Black', sans-serif;
+}
+
+/* Reviews grid with responsive cards */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 10px;
+}
+
+/* Review card */
+.review-card {
+  background: linear-gradient(135deg, #e0f7f5 0%, #b2dfdb 100%);
+  border-left: 8px solid #303232;
+  padding: 22px 28px;
+  border-radius: 14px;
+  box-sizing: border-box;
+  color: #8cc9fb;
+  box-shadow:
+    0 8px 20px rgba(0, 191, 166, 0.25);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  cursor: default;
+  position: relative;
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.review-card:nth-child(1) { animation-delay: 0.1s; }
+.review-card:nth-child(2) { animation-delay: 0.3s; }
+.review-card:nth-child(3) { animation-delay: 0.5s; }
+.review-card:nth-child(4) { animation-delay: 0.7s; }
+.review-card:nth-child(5) { animation-delay: 0.9s; }
+
+.review-card:focus,
+.review-card:hover {
+  box-shadow: 0 14px 40px rgba(155, 215, 245, 0.55);
+  background: linear-gradient(135deg, #d0d2d3, #9fcaf1);
+  color: #f3f7fb;
+  outline: none;
+  transform: translateY(0) scale(1.05);
+  z-index: 1;
+}
+
+/* Reviewer Name */
+.reviewer {
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #097eec;
+}
+
+/* Review Rating */
+.review-rating {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* Review Text */
+.review-text {
+  font-size: 1.05rem;
+  color: #fbf702;
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+
+/* Tablets and below */
+@media (max-width: 1024px) {
+  .details-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 20px;
+  }
+
+  .details-image {
+    width: 260px;
+    height: 370px;
+  }
+
+  .details-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .add-to-cart-button {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .details-container {
+    padding: 20px 15px;
+  }
+
+  .details-image {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .details-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .details-author,
+  .details-price,
+  .details-rating,
+  .details-description {
+    font-size: 0.95rem;
+  }
+
+  .add-to-cart-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
