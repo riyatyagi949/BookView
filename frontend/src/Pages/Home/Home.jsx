@@ -14,7 +14,9 @@ import deliveryImg from "../../Assets/fast.webp";
 
 import { fetchBooksByCategory } from "../../Services/api";
 
-const BACKEND_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:2000";
+// Use your live backend URL from environment variable or fallback
+const BACKEND_BASE_URL =
+  process.env.REACT_APP_API_URL?.replace(/\/$/, "") || "https://bookview-uv6z.onrender.com";
 
 const Home = () => {
   const [featuredBooks, setFeaturedBooks] = useState([]);
