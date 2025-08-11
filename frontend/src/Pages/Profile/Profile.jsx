@@ -1,18 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './Profile.css';
-import { useAuth } from '../../Context/AuthContext';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { submitSiteReview, getAISuggestions } from '../../Services/api';
-
+import React, { useEffect, useState, useRef } from "react";
+import "./Profile.css";
+import { useAuth } from "../../Context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { submitSiteReview, getAISuggestions } from "../../Services/api";
 
 const Profile = () => {
   const { token } = useAuth();
 
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedSuggestion, setSelectedSuggestion] = useState('');
-  const [preview, setPreview] = useState('');
+  const [selectedSuggestion, setSelectedSuggestion] = useState("");
+  const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [rating, setRating] = useState(5);
@@ -21,16 +20,16 @@ const Profile = () => {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    document.body.classList.toggle('light-mode', !darkMode);
+    document.body.classList.toggle("light-mode", !darkMode);
   };
 
   const handleStarClick = (value) => setRating(value);
 
   useEffect(() => {
     if (!review.trim()) {
-      setPreview('');
+      setPreview("");
       setSuggestions([]);
-      setSelectedSuggestion('');
+      setSelectedSuggestion("");
       return;
     }
 
@@ -47,8 +46,8 @@ const Profile = () => {
       const res = await getAISuggestions(input);
       setSuggestions(res.variants || []);
     } catch (err) {
-      console.error('AI suggestion error:', err);
-      toast.error(err?.response?.data?.message || 'Failed to get suggestions from AI');
+      console.error("AI suggestion error:", err);
+      toast.error(err?.response?.data?.message || "Failed to get suggestions from AI");
     }
   };
 
@@ -62,35 +61,39 @@ const Profile = () => {
     const finalReview = review.trim();
 
     if (!token) {
-      return toast.error('Please login to submit a review.');
+      return toast.error("Please login to submit a review.");
     }
     if (!finalReview) {
-      return toast.error('Review cannot be empty.');
+      return toast.error("Review cannot be empty.");
     }
 
     setLoading(true);
     try {
       await submitSiteReview(finalReview, rating, token);
-      toast.success('Review submitted successfully!');
-      setReview('');
+      toast.success("Review submitted successfully!");
+      setReview("");
       setSuggestions([]);
-      setSelectedSuggestion('');
-      setPreview('');
+      setSelectedSuggestion("");
+      setPreview("");
     } catch (err) {
-      console.error('Submit review error:', err);
-      toast.error(err?.response?.data?.message || 'Failed to submit review.');
+      console.error("Submit review error:", err);
+      toast.error(err?.response?.data?.message || "Failed to submit review.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className={`profile-container ${darkMode ? 'dark' : 'light'}`}>
+    <div className={`profile-container ${darkMode ? "dark" : "light"}`}>
       <div className="profile-overlay">
         <div className="header-row">
           <h2>Your Profile</h2>
-          <button className="toggle-mode" onClick={toggleDarkMode}>
-            {darkMode ? '🌞 Light Mode' : '🌙 Dark Mode'}
+          <button
+            className="toggle-mode"
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
           </button>
         </div>
 
@@ -102,20 +105,30 @@ const Profile = () => {
             rows="5"
             placeholder="Write your experience here..."
             disabled={loading}
+            aria-label="Write your review"
           />
         </div>
 
-        <div className="rating-stars">
+        <div className="rating-stars" role="radiogroup" aria-label="Rating">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
               key={star}
-              className={star <= rating ? 'star selected' : 'star'}
+              role="radio"
+              aria-checked={star === rating}
+              tabIndex={0}
+              className={star <= rating ? "star selected" : "star"}
               onClick={() => handleStarClick(star)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") handleStarClick(star);
+              }}
+              aria-label={`${star} star`}
             >
               ★
             </span>
           ))}
-          <span className="rating-text">{rating}/5</span>
+          <span className="rating-text" aria-live="polite">
+            {rating}/5
+          </span>
         </div>
 
         {suggestions.length > 0 && (
@@ -125,18 +138,26 @@ const Profile = () => {
               <div
                 key={index}
                 className={`review-text refined ${
-                  selectedSuggestion === variant ? 'active' : ''
+                  selectedSuggestion === variant ? "active" : ""
                 }`}
               >
                 <div
                   onClick={() => handleUseSuggestion(variant)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") handleUseSuggestion(variant);
+                  }}
+                  aria-label={`Use suggestion: ${variant}`}
                 >
                   {variant}
                 </div>
                 <button
                   className="use-suggestion-btn"
                   onClick={() => handleUseSuggestion(variant)}
+                  aria-label={`Use suggestion button for: ${variant}`}
+                  disabled={loading}
                 >
                   Use this
                 </button>
@@ -147,15 +168,16 @@ const Profile = () => {
 
         <div className="live-preview">
           <h4>🔮 Live Preview</h4>
-          <p>{preview || 'Your review preview will show here.'}</p>
+          <p>{preview || "Your review preview will show here."}</p>
         </div>
 
         <button
           className="submit-btn"
           onClick={handleSubmitReview}
           disabled={loading || !token}
+          aria-disabled={loading || !token}
         >
-          {loading ? 'Submitting...' : token ? 'Submit Review' : 'Login to submit'}
+          {loading ? "Submitting..." : token ? "Submit Review" : "Login to submit"}
         </button>
       </div>
 

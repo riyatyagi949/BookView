@@ -16,7 +16,7 @@ const BookDetails = () => {
   useEffect(() => {
     const loadBook = async () => {
       try {
-        const res = await axios.get(`http://localhost:2000/api/v1/books/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/books/${id}`);
         setBook(res.data);
       } catch (err) {
         console.error('Failed to load book:', err);
@@ -45,7 +45,10 @@ const BookDetails = () => {
   if (!book) return <p className="loading-text">Loading...</p>;
 
   const imageUrl = book.image
-    ? (book.image.startsWith('http') ? book.image : `http://localhost:2000/uploads/${book.image}`)
+    ? (book.image.startsWith('http') 
+        ? book.image 
+        : `${process.env.REACT_APP_API_URL}/uploads/${book.image}`
+      )
     : 'https://via.placeholder.com/280x400?text=No+Image';
 
   return (

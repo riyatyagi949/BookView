@@ -24,7 +24,7 @@ const Books = () => {
           books.map((book) => (
             <Link to={`/books/${book._id}`} key={book._id} className="book-card">
               <img
-                src={`http://localhost:2000/uploads/${book.image}`}
+                src={`${process.env.REACT_APP_API_URL}/uploads/${book.image}`}
                 alt={book.bookname}
               />
               <div className="book-info">

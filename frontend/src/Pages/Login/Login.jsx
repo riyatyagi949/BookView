@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
 
+const BACKEND_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
+
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
@@ -21,7 +23,7 @@ const Login = () => {
     setError('');
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:2000/api/v1/users/login', form);
+      const response = await axios.post(`${BACKEND_BASE_URL}/api/v1/users/login`, form);
 
       const { token, ...user } = response.data;
 

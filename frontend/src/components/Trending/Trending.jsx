@@ -17,13 +17,24 @@ const TrendingBooks = () => {
 
   return (
     <section className="trending-section">
-      <div className="trending-bg" style={{ backgroundImage: `url(${trendingBg})` }} />
+      <div
+        className="trending-bg"
+        style={{ backgroundImage: `url(${trendingBg})` }}
+      />
       <div className="trending-overlay">
         <h2 className="trending-heading">Trending Books</h2>
         <div className="trending-books-container">
           {books.map((book) => (
-            <Link to={`/books/${book._id}`} key={book._id} className="trending-book-card">
-              <img src={`http://localhost:2000/uploads/${book.image}`} alt={book.bookname} className="trending-book-image" />
+            <Link
+              to={`/books/${book._id}`}
+              key={book._id}
+              className="trending-book-card"
+            >
+              <img
+                src={`${process.env.REACT_APP_API_URL}/uploads/${book.image}`}
+                alt={book.bookname}
+                className="trending-book-image"
+              />
               <div className="trending-book-info">
                 <h3>{book.bookname}</h3>
                 <p className="author">By {book.author}</p>

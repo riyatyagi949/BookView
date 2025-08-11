@@ -34,7 +34,8 @@ const EditorsPick = () => {
       <div className="editors-grid">
         {editorsPicks.map((book) => (
           <Link to={`/books/${book._id}`} key={book._id} className="editor-card">
-            <img src={`http://localhost:2000/uploads/${book.image}`} alt={book.bookname} />
+            {<img src={`${process.env.REACT_APP_API_URL}/uploads/${book.image}`} alt={book.bookname} />
+}
             <h4>{book.bookname}</h4>
             <p className="editor-author">By {book.author}</p>
             <p className="editor-reason">{book.description}</p>

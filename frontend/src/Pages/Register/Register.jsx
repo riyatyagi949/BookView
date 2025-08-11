@@ -3,13 +3,15 @@ import './Register.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
-import Toast from '../../components/Toast/Toast'; // ✅
+import Toast from '../../components/Toast/Toast'; 
+
+const BACKEND_BASE_URL = "https://bookview-uv6z.onrender.com";
 
 const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showToast, setShowToast] = useState(false); // ✅
+  const [showToast, setShowToast] = useState(false); 
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -29,16 +31,16 @@ const Register = () => {
 
     try {
       setLoading(true);
-      const { data } = await axios.post('http://localhost:2000/api/v1/users/register', {
+      const { data } = await axios.post(`${BACKEND_BASE_URL}/api/v1/users/register`, {
         name: form.name,
         email: form.email,
         password: form.password
       });
 
-      localStorage.setItem('user', JSON.stringify(data)); // ✅ not "userInfo"
-      login(data); // ✅ login context
-      setShowToast(true); // ✅ toast
-      setTimeout(() => navigate('/'), 3000); // redirect
+      localStorage.setItem('user', JSON.stringify(data)); 
+      login(data);
+      setShowToast(true); 
+      setTimeout(() => navigate('/'), 3000); 
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     } finally {

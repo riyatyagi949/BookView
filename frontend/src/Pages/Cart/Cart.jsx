@@ -44,7 +44,7 @@ const Cart = () => {
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [isAddressValidFlag, setIsAddressValidFlag] = useState(false);
 
-  const BACKEND_BASE_URL = "http://localhost:2000";
+  const BACKEND_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:2000";
 
   const coupons = { SAVE10: 0.1, SAVE20: 0.2 };
 
@@ -263,5 +263,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-

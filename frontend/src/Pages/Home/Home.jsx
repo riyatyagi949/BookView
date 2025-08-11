@@ -14,6 +14,8 @@ import deliveryImg from "../../Assets/fast.webp";
 
 import { fetchBooksByCategory } from "../../Services/api";
 
+const BACKEND_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:2000";
+
 const Home = () => {
   const [featuredBooks, setFeaturedBooks] = useState([]);
   const [activeCard, setActiveCard] = useState(null);
@@ -98,7 +100,7 @@ const Home = () => {
             featuredBooks.map((book) => (
               <Link to={`/books/${book._id}`} key={book._id} className="book-card fade-in">
                 <img
-                  src={`http://localhost:2000/uploads/${book.image}`}
+                  src={`${BACKEND_BASE_URL}/uploads/${book.image}`}
                   alt={book.bookname}
                   className="book-image"
                 />
@@ -134,4 +136,3 @@ const Home = () => {
 };
 
 export default Home;
-
