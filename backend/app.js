@@ -31,9 +31,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/invoices", express.static(path.join(process.cwd(), "invoices")));
 
-
 // Serve uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+// Root route for friendly message
+app.get('/', (req, res) => {
+  res.send('📚 BookView API is running...');
+});
 
 // Routes
 app.use("/api/v1/books", bookRoutes);
