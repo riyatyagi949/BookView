@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export const API_BASE_URL = process.env.REACT_APP_API_URL
-  ? process.env.REACT_APP_API_URL + "api/v1"
-  : "http://localhost:2000/api/v1";
+const BASE_URL = process.env.REACT_APP_API_URL
+  ? process.env.REACT_APP_API_URL.replace(/\/$/, "")
+  : "http://localhost:2000";
+
+export const API_BASE_URL = BASE_URL + "/api/v1";
 
 const getAuthConfig = (token) => ({
   headers: { Authorization: `Bearer ${token}` },
@@ -47,7 +49,7 @@ export const fetchAllBooks = async () => {
   }
 };
 
-// Add to cart API
+// Cart APIs
 export const addToCartApi = async (bookId, quantity, token) => {
   try {
     const response = await axios.post(
@@ -62,7 +64,6 @@ export const addToCartApi = async (bookId, quantity, token) => {
   }
 };
 
-// Fetch cart API
 export const fetchCart = async (token) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/cart`, getAuthConfig(token));
@@ -73,7 +74,6 @@ export const fetchCart = async (token) => {
   }
 };
 
-// Remove from cart API
 export const removeFromCartApi = async (itemId, token) => {
   try {
     const response = await axios.delete(
@@ -87,7 +87,6 @@ export const removeFromCartApi = async (itemId, token) => {
   }
 };
 
-// Clear cart API
 export const clearCartApi = async (token) => {
   try {
     const response = await axios.delete(`${API_BASE_URL}/cart/clear`, getAuthConfig(token));
@@ -98,20 +97,19 @@ export const clearCartApi = async (token) => {
   }
 };
 
-// Place order API - This must return JSON including invoiceUrl
 export const placeOrderApi = async (orderData, token) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/orders`, orderData, {
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     });
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("Error placing order:", getErrorMessage(error));
     throw error;
   }
 };
 
-// Review helpers 
+// Review APIs
 export const submitSiteReview = async (comment, rating, token) => {
   try {
     const response = await axios.post(
@@ -135,3 +133,5 @@ export const getAISuggestions = async (text) => {
     throw error;
   }
 };
+
+export { BASE_URL };
