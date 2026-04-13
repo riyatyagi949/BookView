@@ -133,7 +133,7 @@ export const refineReview = asyncHandler(async (req, res) => {
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `
 Refine the following review into 3 improved versions.
